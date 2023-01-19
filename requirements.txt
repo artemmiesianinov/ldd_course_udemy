@@ -13,3 +13,5 @@ xz-utils
 minicom
 wget
 git-core
+gcc-arm-linux-gnueabi
+lzop
