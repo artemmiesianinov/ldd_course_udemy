@@ -28,7 +28,7 @@ Repository of Linux device driver programming(LDD1) Udemy course
 3. Add toolchain in PATH:
    `export PATH=$PATH:<path_to_tool_chain_binaries>`
 
-   **TODO**: create git submodule which downloaded compiler binaries
+   **TODO**: create git submodule which downloaded compiler toolchain binaries
 
 4. The reference documents
    * [AM335x Technical reference manual](https://www.ti.com/lit/ug/spruh73q/spruh73q.pdf)
@@ -44,29 +44,27 @@ Repository of Linux device driver programming(LDD1) Udemy course
 4. Create two partitions on SD card:
    * BOOT with fat16 (256 - 512 MB)
    * ROOTFS ext4 (the remaning space)
-5. Set flags for BOOT partition:
-   * boot
-   * lba
+5. Set the following flags for BOOT partition: `boot`, `lba`
 6. Look for path where SD card's partitions mounted with `lsblk`
 7. Copy files with [pre-build images](./downloads/pre-built-images/) into BOOT partition
-8. Mount Debian image and `cd to_image_mount point`. And copy all from rootfs to mounted SD card's ROOTFS:
-
-   `sudo cp -a * /media/$USER/ROOOTFS`
+8. Mount Debian image and `cd to_image_mount point`. And copy all from rootfs to mounted SD card's ROOTFS: `sudo cp -a * /media/$USER/ROOOTFS`
 9. Unmount SD card's volumes and eject card from reader.
 10. Insert SD card into BBB
 11. Optional. Connect serial-to-ttl usb dongle (use `sudo dmesg` for detect mount point for dongle)
 12. Launch minicom with `sudo minicom -s` (-s option allows to ommit the "/dev/modem not found" error)
     * Make config:
       * A: `/dev/ttyUSB<X>`
-      * F: Hardware Flow control No
+      * F: Hardware Flow control: No
       * Save as default
 13. Power on BBB holding S2 button
 14. Remove boot image from eMMC to make the SD card will be default without S2 button pressing
     * Backup MBR using following command: `dd if=/dev/mmcblk1 of=emmcboot.img bs=1M count=1`
     * Remove MBR using `dd if=/dev/zero of=/dev/mmcblk1 bs=1M count=1`
+15. The eMMC image can be restored via reversed if/of in command:
 
-**TODO**: Recover eMMC and describe here. Check how image at eMMC updated via official docs
-
+    `dd if=emmcboot.img of=/dev/mmcblk1 bs=1M count=1`
+16. Optional. There is "Flasher" images available at [offical website](https://beagleboard.org/latest-images). It's also possible update/restore eMMC via SD card with this image written on it.
+ 
 ## Additional Refernces
 
 **TODO**: [PRU cookbook](https://beagleboard.org/static/prucookbook/)
