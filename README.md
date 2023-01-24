@@ -76,6 +76,11 @@ Repository of Linux device driver programming(LDD1) Udemy course
    * copy folder from `/lib/modules` to SD card's `/lib/modules`
    * copy the dtb's from `../arch/arm/boot/dts/<same_name_as_one_in_your_boot_partition>.dtb` to BOOT partiion
 
+**TODO**:
+
+1. Update u-boot to newer version
+2. Look into the error `pm bootloader does not support rtc-only`
+
 ## Additional Refernces
 
 **TODO**: [PRU cookbook](https://beagleboard.org/static/prucookbook/)
