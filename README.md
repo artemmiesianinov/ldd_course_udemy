@@ -64,7 +64,18 @@ Repository of Linux device driver programming(LDD1) Udemy course
 
     `dd if=emmcboot.img of=/dev/mmcblk1 bs=1M count=1`
 16. Optional. There is "Flasher" images available at [offical website](https://beagleboard.org/latest-images). It's also possible update/restore eMMC via SD card with this image written on it.
- 
+
+### Updating Linux Kernel Image
+
+1. Clone the latest kernel source from [BBB oficial github](github.com:beagleboard/linux.git)
+   * **TODO** Append Step or add as build script
+2. Optional [Official Tutorial](https://elinux.org/Building_BBB_Kernel)
+3. Build using [file](./scripts/kernel_compilation_steps)
+   * modules installed in `/lib/modules`
+4. Upload new files:
+   * copy folder from `/lib/modules` to SD card's `/lib/modules`
+   * copy the dtb's from `../arch/arm/boot/dts/<same_name_as_one_in_your_boot_partition>.dtb` to BOOT partiion
+
 ## Additional Refernces
 
 **TODO**: [PRU cookbook](https://beagleboard.org/static/prucookbook/)
